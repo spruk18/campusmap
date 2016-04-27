@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Login;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use Illuminate\Support\Facades\Input;
+use DB;
 
 class AuthController extends Controller
 {
@@ -46,12 +51,11 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator()
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+        return Validator::make(Input::all(), [
+            'username' => 'required|max:255',
+            'password' => 'required|min:3|confirmed',
         ]);
     }
 
@@ -63,10 +67,39 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        return Login::create([
+            'username' => $data['username'],
+            'password' => $data['password'],
         ]);
     }
+    public function login(){
+        return view('index');
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return redirect('/');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = [
+            'username' => Input::get('username'),
+            'password' => Input::get('password'),
+        ];
+
+        
+        if(!Auth::attempt($credentials))
+        {
+            Session::flash('flash_error','Wrong username/password!');
+            return Response::json(array('success' => false));
+            //return redirect()->back();
+        }
+        
+       
+            Session::flash('flash_message','Logged in!');
+            //return redirect('home');
+            return Response::json(array('success' => true));      
+    }  
+
 }
