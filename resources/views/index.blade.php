@@ -13,7 +13,7 @@
 					@endif
 
 					
-					{{-- 
+					
 					{{ Form::open(array('url' => 'auth/login')) }}
 						<h1>Login</h1>
 						@if(Session::has('error'))
@@ -35,7 +35,9 @@
 						<div class="alert alert-danger">{{Session::get('flash_error')}}</div>
 					@endif
 
-					--}}
+					
+					<!--
+
 					<div ng-app="loginApp">
 						<form ng-submit="submitLogin()">    
 					        <div class="form-group">
@@ -55,7 +57,7 @@
 				     	<p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
 				    		        
 				    </div> --}}
-
+-->
 					
                 </div>
             </div>
