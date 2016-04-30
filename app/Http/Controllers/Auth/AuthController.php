@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Response;
 
 class AuthController extends Controller
 {
@@ -92,14 +93,14 @@ class AuthController extends Controller
         if(!Auth::attempt($credentials))
         {
             Session::flash('flash_error','Wrong username/password!');
-            //return Response::json(array('success' => false));
-            return redirect()->back();
+            return Response::json(array('success' => false));
+            //return redirect()->back();
         }
         
        
             Session::flash('flash_message','Logged in!');
-            return redirect('home');
-            //return Response::json(array('success' => true));      
+            //return redirect('home');
+            return Response::json(array('success' => true));      
     }  
 
 }

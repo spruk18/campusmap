@@ -1,0 +1,6 @@
+.login
+{
+	padding:20px;
+}
+
+input.ng-invalid.minlength.ng-dirty { border:1px solid blue; }

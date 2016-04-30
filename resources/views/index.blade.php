@@ -8,7 +8,34 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    @if(Session::has('flash_message'))
+					<div class="login" ng-app="campusApp" ng-controller="LoginController">
+						<form name="loginForm" ng-submit="submitLogin()">
+					        <div class="form-group">
+					            <input type="text" class="form-control input-lg" name="username" ng-model="loginData.username" placeholder="username" ng-minlength=4 ng-maxlength=30 required>
+					            <p class="errors">{{$errors->first('username')}}</p>
+					            <div ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+									<div ng-show="loginForm.username.$error.required"> Username is required</div>
+									<div ng-show="loginForm.username.$error.minlength"> Username must be atleast 4 characters</div>
+									<div ng-show="loginForm.username.$error.maxlength"> Username must be below 30 characters</div>
+								</div>
+					        </div>
+					        <div class="form-group">
+					            <input type="password" class="form-control input-lg" name="password" ng-model="loginData.password" placeholder="password"required>
+					            <p class="errors">{{$errors->first('password')}}</p>
+					        </div>				    
+					        <div class="form-group text-right">   
+					            <button type="submit" class="btn btn-primary btn-lg" ng-disabled="loginForm.$dirty && loginForm.$invalid">Submit</button>
+					        </div>
+				   		</form>
+				   		
+						<div class="alert alert-danger" ng-show="invalidLogin">Wrong Username/Password</div>
+
+					</div>
+					
+
+					<!-- laravel login
+
+					@if(Session::has('flash_message'))
 						<div class="alert alert-success">{{Session::get('flash_message')}}</div>
 					@endif
 
@@ -34,30 +61,8 @@
 					@if(Session::has('flash_error'))
 						<div class="alert alert-danger">{{Session::get('flash_error')}}</div>
 					@endif
+					-->			
 
-					
-					<!--
-
-					<div ng-app="loginApp">
-						<form ng-submit="submitLogin()">    
-					        <div class="form-group">
-					            <input type="text" class="form-control input-lg" name="username" ng-model="loginData.username" placeholder="username">
-					        </div>
-					        <div class="form-group">
-					            <input type="password" class="form-control input-lg" name="password" ng-model="loginData.password" placeholder="password">
-					        </div>				    
-					        <div class="form-group text-right">   
-					            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-					        </div>
-				   		</form>
-
-					</div>
-					
-					{{-- <div class="comment" ng-hide="loading" ng-repeat="comment in comments">
-				     	<p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
-				    		        
-				    </div> --}}
--->
 					
                 </div>
             </div>
