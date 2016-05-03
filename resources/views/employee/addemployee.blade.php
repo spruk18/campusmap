@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Add Employee</div>
 
-                <div class="panel-body" ng-app="DropDownApp" ng-controller="DropDownCtrl">
+                <div class="panel-body" ng-app="campusApp" ng-controller="AddEmployeeController">
                     {{ Form::open(array('url' => 'employee', 'method' => 'store')) }}									
 					<div class="controls">
 					{{ Form::text('username','',array('class'=>'form-control span6','placeholder' => 'Username')) }}

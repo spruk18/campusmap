@@ -1,6 +1,6 @@
-var app = angular.module("campusApp",[]);
+var app = angular.module("campusApp",["ngAlertify"]);
 
-app.controller('LoginController',function($scope, $http, $window)
+app.controller('LoginController',function($scope, $http, $window,alertify)
 {
     $scope.loginData ={};
     $scope.invalidLogin=false;
@@ -19,7 +19,9 @@ app.controller('LoginController',function($scope, $http, $window)
            }
            else
            {
-           		$scope.invalidLogin = true;
+           		//$scope.invalidLogin = true;
+           		alertify.error("Wrong Username/Password");
+
            }
            
         })
@@ -29,4 +31,7 @@ app.controller('LoginController',function($scope, $http, $window)
     }
 });
 
-
+app.controller('AddEmployeeController', function($scope)
+{
+	
+})
