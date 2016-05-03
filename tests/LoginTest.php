@@ -20,7 +20,7 @@ class LoginTest extends TestCase
     	$this->visit('/')
              ->see('Login');
     }
-    public function checkLogin()
+    public function testCheckCorrectLogin()
     {
     	$this->visit('/')
          ->type('admin', 'username')
@@ -28,6 +28,14 @@ class LoginTest extends TestCase
          ->press('Login')
          ->seePageIs('/home');
     }
-
+	
+	public function testCheckIncorrectLogin
+	{
+		$this->visit('/')
+         ->type('admins', 'username')
+         ->type('admins','password')
+         ->press('Login')
+         ->seePageIs('/');
+	}
     
 }
