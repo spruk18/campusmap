@@ -10,7 +10,7 @@ class Facility extends Model
     use SoftDeletes;
     protected $table = 'facilities';
     protected $fillable = [
-        'name'
+        'name','floor','building','photo','floor_plan'
     ];
     protected $dates = ['deleted_at'];
 }

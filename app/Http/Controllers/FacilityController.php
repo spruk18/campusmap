@@ -9,6 +9,8 @@ use Validator;
 use View;
 use DB;
 use App\Facility;
+use Carbon\Carbon;
+use Session;
 
 class FacilityController extends Controller
 {
@@ -46,8 +48,16 @@ class FacilityController extends Controller
     public function store(Request $request)
     {
         //
+        $current_time = Carbon::now()->toDayDateTimeString();
+
+        
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255|min:4',          
+            'name' => 'required|max:255|min:4',
+            'floor' => 'required|max:10|min:0',
+            'building' => 'required|max:255|min:4',
+            'photo' => 'mimes:jpeg,bmp,png',
+            'floor_plan' => 'mimes:jpeg,bmp,png'
+
         ]);
 
         if ($validator->fails()) {
@@ -56,14 +66,29 @@ class FacilityController extends Controller
                         ->withInput();
         }
 
+        
+        $destinationPath = 'uploads'; // upload path
+        $photoExtension = $request->file('photo')->getClientOriginalExtension(); 
+        $floorExtension = $request->file('floor_plan')->getClientOriginalExtension(); 
 
+        $photoFileName = 'photo'.rand(11111,99999).'.'.$photoExtension;
+        $floorFileName = 'floor_plan'.rand(11111,99999).'.'.$floorExtension;
+        $request->file('photo')->move($destinationPath, $photoFileName); // uploading file to given path
+        $request->file('floor_plan')->move($destinationPath, $floorFileName);
+        // sending back with message
+        Session::flash('success', 'Upload successfully'); 
         $fac = Facility::create([
             'name'  =>  $request->input('name'),
-        ]);
-
-        
+            'floor' => $request->input('floor'),
+            'building' => $request->input('building'),
+            'floor_plan' => $photoFileName,
+            'photo' => $floorFileName,
+        ]);      
 
         return redirect('facility');
+        
+
+        
     }
 
     /**
