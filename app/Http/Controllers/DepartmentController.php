@@ -89,7 +89,7 @@ class DepartmentController extends Controller
             ->where('id','=',$id)
             ->get();
 
-        return View::make('department.viewdepartment')
+        return View::make('department.editdepartment')
             ->with('department', $dept);
     }
 

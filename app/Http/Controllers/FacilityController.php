@@ -115,7 +115,7 @@ class FacilityController extends Controller
             ->where('id','=',$id)
             ->get();
 
-        return View::make('facility.viewfacility')
+        return View::make('facility.editfacility')
             ->with('facility', $fac);
     }
 

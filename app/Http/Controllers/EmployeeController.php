@@ -124,7 +124,7 @@ class EmployeeController extends Controller
             ->where('employees.id','=',$id)
             ->get();
 
-        return View::make('employee.viewemployee')
+        return View::make('employee.editemployee')
             ->with('employee', $emp);
     }
 
