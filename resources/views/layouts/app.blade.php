@@ -59,7 +59,9 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/employee/create') }}">Add Employees</a></li>
-                                <li><a href="{{ url('/employee') }}">View Employees</a></li>
+                                <li><a href="{{ url('/employee') }}">View All Employees</a></li>
+                                <li><a href="{{ url('/employee/teaching') }}">View Teaching Employees</a></li>
+                                <li><a href="{{ url('/employee/nonteaching') }}">View Non-Teaching Employees</a></li>
                             </ul>
                         </li>    
                         <li class="dropdown">

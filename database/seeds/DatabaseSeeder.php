@@ -78,6 +78,70 @@ class SampleSiteSeeder extends Seeder
 				'name'	=> 'IT'
 				]);
 
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Main College Building'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Academic Building'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Dormitory'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Gymnasium'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Canteen'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Center for Student Affairs'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Bookstore'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Athletic Office'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Guard House'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Maintenance Office'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Soccer Field'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Power House'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Basketball Court'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Tennis Court'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Botanical Garden'
+				]);
+			DB::table('buildings')->insert(
+				[
+					'building_name' => 'Bus Garage'
+				]);
 
 			$this->command->info('Seed okay!');
 

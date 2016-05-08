@@ -17,11 +17,12 @@ class CreateFacilityTable extends Migration
             $table->string('name');
             $table->integer('floor')
                 ->unsigned();
-            $table->string('building');
+            $table->integer('building_id')->unsigned();
+            $table->foreign('building_id')
+                ->references('id')
+                ->on('buildings');
             $table->string('floor_plan');
-            $table->string('floor_plan_mime');
             $table->string('photo');
-            $table->string('photo_mime');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -35,10 +35,12 @@ Route::group(['middleware' => 'auth'], function() {
 		}
 		
 	});
-
+	Route::get('employee/teaching','EmployeeController@viewTeaching');
+	Route::get('employee/nonteaching','EmployeeController@viewNonTeaching');
 	Route::resource('employee', 'EmployeeController');
 	Route::resource('facility', 'FacilityController');
 	Route::resource('department', 'DepartmentController');
+
 	//Route::resource('employee/add', 'EmployeeController@addEmployee');
 	// Route::get('employee','Employeecontroller@index');
 	// Route::get('employee/add','Employeecontroller@addEmployeeView');

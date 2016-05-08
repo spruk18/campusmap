@@ -14,8 +14,8 @@
 					<p class="errors">{{$errors->first('name')}}</p>
 					</div>
 
-                    <div class="controls">
-                    {{ Form::text('building','',array('class'=>'form-control span6','placeholder' => 'Building')) }}
+                    <div class="controls">                    
+                    {!! Form::select('building', $bldg,null,array('class'=>'form-control span6')) !!}
                     <p class="errors">{{$errors->first('building')}}</p>
                     </div>
 

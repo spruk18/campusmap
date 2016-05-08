@@ -3,14 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Facility extends Model
+class Building extends Model
 {
     //
     use SoftDeletes;
-    protected $table = 'facilities';
+    protected $table = 'buildings';
     protected $fillable = [
-        'name','floor','building_id','photo','floor_plan'
+        'building_name','x_loc','y_loc'
     ];
     protected $dates = ['deleted_at'];
 }

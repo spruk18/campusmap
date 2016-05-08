@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Validator;
 use View;
@@ -11,7 +10,6 @@ use DB;
 use App\Facility;
 use Carbon\Carbon;
 use Session;
-
 class FacilityController extends Controller
 {
     /**
@@ -23,7 +21,9 @@ class FacilityController extends Controller
     {
         //
         $fac = DB::table('facilities')
+            ->join('buildings', 'buildings.id', '=', 'facilities.building_id')
             ->where('facilities.deleted_at','=',NULL)
+
             ->get();
         return view('facility.facility',['facilities' => $fac]);
     }
@@ -36,7 +36,9 @@ class FacilityController extends Controller
     public function create()
     {
         //
-        return view('facility.addfacility');
+       
+        return view('facility.addfacility')
+            ->with('bldg', DB::table('buildings')->lists('building_name','id'));
     }
 
     /**
@@ -54,9 +56,9 @@ class FacilityController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255|min:4',
             'floor' => 'required|max:10|min:0',
-            'building' => 'required|max:255|min:4',
-            'photo' => 'mimes:jpeg,bmp,png',
-            'floor_plan' => 'mimes:jpeg,bmp,png'
+            'building' => 'required',
+            'photo' => 'required|mimes:jpeg,bmp,png',
+            'floor_plan' => 'required|mimes:jpeg,bmp,png'
 
         ]);
 
@@ -80,7 +82,7 @@ class FacilityController extends Controller
         $fac = Facility::create([
             'name'  =>  $request->input('name'),
             'floor' => $request->input('floor'),
-            'building' => $request->input('building'),
+            'building_id' => $request->input('building'),
             'floor_plan' => $photoFileName,
             'photo' => $floorFileName,
         ]);      

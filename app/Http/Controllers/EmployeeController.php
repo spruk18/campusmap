@@ -184,4 +184,28 @@ class EmployeeController extends Controller
 
         return redirect('employee');
     }
+
+    public function viewTeaching()
+    {
+        $emp = DB::table('logins')
+            ->join('informations','logins.id','=','informations.login_id')
+            ->join('employees','logins.id','=','employees.login_id')
+            ->select('logins.username','informations.*','employees.*')
+            ->where('employees.deleted_at','=',NULL)
+            ->where('employees.employee_type','=','teaching')
+            ->get();
+        return view('employee.employee',['employees' => $emp]);
+
+    }
+    public function viewNonTeaching()
+    {
+        $emp = DB::table('logins')
+            ->join('informations','logins.id','=','informations.login_id')
+            ->join('employees','logins.id','=','employees.login_id')
+            ->select('logins.username','informations.*','employees.*')
+            ->where('employees.deleted_at','=',NULL)
+            ->where('employees.employee_type','=','non-teaching')
+            ->get();
+        return view('employee.employee',['employees' => $emp]);
+    }
 }

@@ -25,7 +25,7 @@
 						    	<td>{!! $fac->id !!}</td>
 						    	<td>{!! $fac->name !!}</td>
 						    	<td>{!! $fac->floor !!}</td>
-						    	<td>{!! $fac->building !!}</td>
+						    	<td>{!! $fac->building_name !!}</td>
 						    	<td>
 						    	<a href="#">{!! Html::image('uploads/'.$fac->floor_plan, 'alt', array( 'class'=>'img_thumbnail','data-toggle'=>'modal','data-target'=>'#floorPlanModal'.$fac->id)) !!}</a>
 						    	</td>
