@@ -74,6 +74,13 @@ class DepartmentController extends Controller
     public function show($id)
     {
         //
+        $dept = DB::table('employees')
+            ->join('informations','employees.information_id','=','informations.id')
+            ->where('department_id','=',$id)
+            ->get();
+        $dept_name=Department::find($id);        
+        $d=$dept_name->name;
+        return view('department.viewdepartment',['employees' => $dept,'dept_name'=>$d]);
     }
 
     /**

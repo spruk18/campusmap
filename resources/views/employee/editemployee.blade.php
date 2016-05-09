@@ -39,7 +39,17 @@
 						{{ Form::text('address',$emp->address,array('class'=>'form-control span6', 'placeholder' => 'Address')) }}
 						<p class="errors">{{$errors->first('address')}}</p>
 						</div>				
-					
+						
+						@if($emp->employee_type=='teaching')							
+		                    <div class="controls">     
+		                    {{ Form::label('dept_iid', 'Department') }}               
+		                    {!! Form::select('dept_id', $department,$emp->department_id,array('class'=>'form-control span6')) !!}
+		                    <p class="errors">{{$errors->first('dept_id')}}</p>
+		                    </div>
+						@else
+						 	
+						@endif
+
 						{{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
 					
 						{{ Form::close() }}

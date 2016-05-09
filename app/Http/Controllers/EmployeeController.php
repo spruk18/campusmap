@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Validator;
 use Hash;
 use View;
+use Log;
 class EmployeeController extends Controller
 {
     /**
@@ -89,6 +90,7 @@ class EmployeeController extends Controller
             'login_id'  =>  $login->id,
             'information_id'    =>  $inf->id,
             'employee_type' => $request->input('employee_type'),
+            'department_id' => $request->input('department_id'),
         ]);
 
         
@@ -120,12 +122,13 @@ class EmployeeController extends Controller
          $emp = DB::table('logins')
             ->join('informations','logins.id','=','informations.login_id')
             ->join('employees','logins.id','=','employees.login_id')
-            ->select('logins.username','informations.*')
+            ->select('logins.username','informations.*','employees.*')
             ->where('employees.id','=',$id)
             ->get();
-
+        
         return View::make('employee.editemployee')
-            ->with('employee', $emp);
+            ->with('employee', $emp)
+            ->with('department', DB::table('departments')->lists('name','id'));;
     }
 
     /**
@@ -154,9 +157,17 @@ class EmployeeController extends Controller
         $inf->fname = $request->input('fname');
         $inf->mname = $request->input('mname');
         $inf->lname = $request->input('lname');
-        $inf->address = $request->input('address');
+        $inf->address = $request->input('address');        
+        $empid = $inf->id;
         $inf->save();
 
+        if(!is_null($request->input('dept_id')))
+        {
+           DB::table('employees')
+            ->where('information_id', $empid)
+            ->update(['department_id' => $request->input('dept_id')]);
+        }
+        
                
 
         return redirect('employee');

@@ -19,7 +19,7 @@
 						@foreach ($departments as $dept)
 						    <tr>
 						    	<td>{{ $dept->id }}</td>
-						    	<td>{{ $dept->name }}</td>
+						    	<td><a href="department/{!! $dept->id !!}">{{ $dept->name }}</a></td>
 						    	<td>						    		
 						    		{{ Form::open(array('route' => array('department.edit', $dept->id), 'method' => 'get')) }}
 								        <button type="submit"><i class="fa fa-btn fa-edit"></i>Edit</button>
