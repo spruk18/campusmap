@@ -1,0 +1,15 @@
+[2016-05-10 11:46:05] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Carbon\Carbon' not found' in /srv/disk7/1602318/www/campusmap.co.nf/bootstrap/cache/compiled.php:11882
+Stack trace:
+#0 {main}  
+[2016-05-10 11:55:47] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Carbon\Carbon' not found' in /srv/disk7/1602318/www/campusmap.co.nf/bootstrap/cache/compiled.php:11882
+Stack trace:
+#0 {main}  
+[2016-05-10 12:01:50] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Carbon\Carbon' not found' in /srv/disk7/1602318/www/campusmap.co.nf/bootstrap/cache/compiled.php:11882
+Stack trace:
+#0 {main}  
+[2016-05-10 12:01:52] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Carbon\Carbon' not found' in /srv/disk7/1602318/www/campusmap.co.nf/bootstrap/cache/compiled.php:11882
+Stack trace:
+#0 {main}  
+[2016-05-10 12:03:12] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Carbon\Carbon' not found' in /srv/disk7/1602318/www/campusmap.co.nf/bootstrap/cache/compiled.php:11882
+Stack trace:
+#0 {main}  

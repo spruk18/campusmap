@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Validator;
 use Hash;
 use View;
+use Carbon\Carbon;
 use Log;
 class EmployeeController extends Controller
 {
@@ -55,6 +56,8 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //
+        $current_time = Carbon::now()->toDayDateTimeString();
+
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:logins|max:10|min:4',
             'password' => 'required|max:30',
@@ -64,6 +67,7 @@ class EmployeeController extends Controller
             'mname' => 'required|max:30',
             'lname' => 'required|max:30',
             'address' => 'required|max:100',
+            'photo' => 'mimes:jpeg,bmp,png',
         ]);
 
         if ($validator->fails()) {
@@ -78,12 +82,19 @@ class EmployeeController extends Controller
             'role' => 'employee',
         ]);
 
+        // upload path        
+        $destinationPath = 'uploads'; 
+        $photoExtension = $request->file('photo')->getClientOriginalExtension(); 
+        $photoFileName = 'photo'.rand(11111,99999).'.'.$photoExtension;
+        $request->file('photo')->move($destinationPath, $photoFileName);
+        Log::info('Showing user profile for user: '.$photoFileName);
         $inf = Information::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),
             'lname' => $request->input('lname'),
             'address' => $request->input('address'),
             'login_id' => $login->id,
+            'photo' => $photoFileName,
         ]);
         
         $emp = Employee::create([

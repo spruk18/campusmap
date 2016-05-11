@@ -22,6 +22,7 @@ class CreateInformationTable extends Migration
             $table->foreign('login_id')
                 ->references('id')
                 ->on('logins');
+            $table->string('photo')->default('anon.png');
             $table->timestamps();
             $table->softDeletes();
         });

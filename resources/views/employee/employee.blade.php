@@ -19,6 +19,7 @@
 							<td>Address</td>
 							<td></td>
 							<td></td>
+							<td></td>
 						</tr>
 						@foreach ($employees as $emp)
 						    <tr>
@@ -28,6 +29,9 @@
 						    	<td>{{ $emp->lname }}</td>
 						    	<td>{{ $emp->mname }}</td>
 						    	<td>{{ $emp->address }}</td>
+						    	<td>
+						    	<a href="#">{!! Html::image('uploads/'.$emp->photo, 'alt', array( 'class'=>'img_thumbnail','data-toggle'=>'modal','data-target'=>'#photoModal'.$emp->id)) !!}</a>
+						    	</td>
 						    	<td>						    		
 						    		{{ Form::open(array('route' => array('employee.edit', $emp->id), 'method' => 'get')) }}
 								        <button type="submit"><i class="fa fa-btn fa-edit"></i>Edit</button>
@@ -46,7 +50,28 @@
 
 
 					<!-- modal start -->
+					@foreach ($employees as $fac)
 					
+					<div id="photoModal{!! $fac->id !!}" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+
+						<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">{!! $fac->fname.' '.$fac->mname.' '.$fac->lname !!}</h4>
+								</div>
+								<div class="modal-body">
+									{!! Html::image('uploads/'.$fac->photo, 'alt', array('class'=>'img' )) !!}
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					@endforeach
 					<!-- modal -->
 					
                 </div>

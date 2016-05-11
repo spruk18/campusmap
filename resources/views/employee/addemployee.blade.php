@@ -8,7 +8,7 @@
                 <div class="panel-heading">Add Employee</div>
 
                 <div class="panel-body" ng-app="campusApp" ng-controller="AddEmployeeController">
-                    {{ Form::open(array('url' => 'employee', 'method' => 'store')) }}									
+                    {{ Form::open(array('url' => 'employee', 'method' => 'store','files'=>true)) }}									
 					<div class="controls">
 					{{ Form::text('username','',array('class'=>'form-control span6','placeholder' => 'Username')) }}
 					<p class="errors">{{$errors->first('username')}}</p>
@@ -51,7 +51,12 @@
 					<div class="controls">
 					{{ Form::text('address','',array('class'=>'form-control span6', 'placeholder' => 'Address')) }}
 					<p class="errors">{{$errors->first('address')}}</p>
-					</div>				
+					</div>		
+
+					<div class="controls">
+                    <span>photo</span> {!! Form::file('photo') !!}
+                    <p class="errors">{{$errors->first('photo')}}</p>
+                    </div>  
 				
 					{{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}
 				
