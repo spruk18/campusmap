@@ -46,7 +46,8 @@ class DepartmentController extends Controller
     {
         //
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255|min:4',          
+            'name' => 'required|max:255|min:4',       
+            'dept_type' => 'required',   
         ]);
 
         if ($validator->fails()) {
@@ -58,6 +59,7 @@ class DepartmentController extends Controller
 
         $dept = Department::create([
             'name'  =>  $request->input('name'),
+            'dept_type' => $request->input('dept_type'),
         ]);
 
         
@@ -112,6 +114,7 @@ class DepartmentController extends Controller
         //
         $validator = Validator::make($request->all(), [           
             'name' => 'required|max:255|min:4',
+            'dept_type'=>'required',
         ]);
 
         if ($validator->fails()) {
@@ -121,6 +124,7 @@ class DepartmentController extends Controller
         }
         $dept = Department::find($id);
         $dept->name = $request->input('name');
+        $dept->dept_type = $request->input('dept_type');
         $dept->save();               
 
         return redirect('department');

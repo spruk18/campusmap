@@ -16,6 +16,12 @@
 						{{ Form::text('name',$dept->name,array('class'=>'form-control span6', 'placeholder' => 'Department Name')) }}
 						<p class="errors">{{$errors->first('name')}}</p>
 						</div>
+						<div class="controls">
+	                    {{ Form::select('dept_type', array('teaching' => 'Teaching', 'non-teaching' => 'Non-Teaching'), 'teaching',
+	                    array('class'=>'form-control span6','ng-model'=>'dept_type')) }}
+	                    <p class="errors">{{$errors->first('dept_type')}}</p>
+	                    </div>
+
 						
 					
 						{{ Form::submit('Submit', array('class'=>'btn btn-primary')) }}

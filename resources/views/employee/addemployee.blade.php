@@ -31,7 +31,12 @@
 					</div>
 					
 					<div id="department" class="controls" ng-if="emp_type == 'teaching'">
-					{{ Form::select('department_id', App\Department::lists('name', 'id') , null,array('class'=>'form-control span6')) }}
+					{{ Form::select('department_id', App\Department::where('dept_type', 'teaching')->orderBy('id')->pluck('name', 'id') , null,array('class'=>'form-control span6')) }}
+					<p class="errors">{{$errors->first('department')}}</p>
+					</div>
+
+					<div id="department2" class="controls" ng-if="emp_type == 'non-teaching'">
+					{{ Form::select('department_id', App\Department::where('dept_type', 'non-teaching')->orderBy('id')->pluck('name', 'id') , null,array('class'=>'form-control span6')) }}
 					<p class="errors">{{$errors->first('department')}}</p>
 					</div>
 

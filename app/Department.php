@@ -10,7 +10,7 @@ class Department extends Model
     use SoftDeletes;
     protected $table = 'departments';
     protected $fillable = [
-        'name'
+        'name','dept_type'
     ];
     protected $dates = ['deleted_at'];
 }

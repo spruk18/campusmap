@@ -83,11 +83,20 @@ class EmployeeController extends Controller
         ]);
 
         // upload path        
-        $destinationPath = 'uploads'; 
-        $photoExtension = $request->file('photo')->getClientOriginalExtension(); 
-        $photoFileName = 'photo'.rand(11111,99999).'.'.$photoExtension;
-        $request->file('photo')->move($destinationPath, $photoFileName);
-        Log::info('Showing user profile for user: '.$photoFileName);
+        if($request->file('photo')==NULL)
+        {
+            $photoFileName='anon.png';
+        }   
+        else
+        {
+            $destinationPath = 'uploads'; 
+            $photoExtension = $request->file('photo')->getClientOriginalExtension(); 
+            $photoFileName = 'photo'.rand(11111,99999).'.'.$photoExtension;
+            $request->file('photo')->move($destinationPath, $photoFileName);    
+        }    
+        
+
+       
         $inf = Information::create([
             'fname' => $request->input('fname'),
             'mname' => $request->input('mname'),

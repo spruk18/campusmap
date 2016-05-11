@@ -13,6 +13,7 @@
 						<tr>
 							<td>Dept_id</td>
 							<td>Department Name</td>
+							<td>Department Type</td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -20,6 +21,7 @@
 						    <tr>
 						    	<td>{{ $dept->id }}</td>
 						    	<td><a href="department/{!! $dept->id !!}">{{ $dept->name }}</a></td>
+						    	<td>{{ $dept->dept_type }}</td>
 						    	<td>						    		
 						    		{{ Form::open(array('route' => array('department.edit', $dept->id), 'method' => 'get')) }}
 								        <button type="submit"><i class="fa fa-btn fa-edit"></i>Edit</button>
@@ -30,6 +32,7 @@
 								        <button type="submit"><i class="fa fa-btn fa-remove"></i>Delete</button>
 								    {{ Form::close() }}						    		
 						    	</td>
+
 						    </tr>
 						@endforeach
 					</table>
